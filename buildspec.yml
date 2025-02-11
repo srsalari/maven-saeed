@@ -1,0 +1,18 @@
+version: 0.2
+
+build:
+    commands:
+      - echo "Building the project..."
+      - mvn clean package -DskipTests
+      - mkdir -p output
+      - cp target/*.jar output/  # Copy the JAR file to the output directory
+
+post_build:
+    commands:
+      - echo "Build completed. Listing output directory..."
+      - ls -R output/
+
+artifacts:
+  files:
+    - 'my-app/target/*.jar'
+  discard-paths: yes
